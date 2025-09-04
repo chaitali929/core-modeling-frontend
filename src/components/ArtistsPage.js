@@ -2,8 +2,10 @@ import React, { useEffect, useState } from "react";
 import Navbar from "./Navbar";
 import Footer from "./Footer";
 import "../styles/ArtistsPage.css";
+import axios from "axios";
+import { API_BASE_URL } from "./config";
 
-const backendURL = "http://localhost:5000";
+//const backendURL = "http://localhost:5000";
 
 const ArtistsPage = () => {
   const [artists, setArtists] = useState([]);
@@ -38,7 +40,7 @@ const ArtistsPage = () => {
       try {
         const user = JSON.parse(localStorage.getItem("user"));
 
-        const res = await fetch(`${backendURL}/api/artists`, {
+        const res = await fetch(`${API_BASE_URL}/api/artists`, {
           headers: {
             Authorization: `Bearer ${user?.token}`,
           },

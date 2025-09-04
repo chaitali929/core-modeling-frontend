@@ -3,8 +3,11 @@ import { useNavigate } from "react-router-dom"; // 👈 import
 import Navbar from "./Navbar";
 import Footer from "./Footer";
 import "../styles/RecruiterProjects.css";
+import axios from "axios";
+import { API_BASE_URL } from "./config";
 
-const backendURL = "http://localhost:5000";
+
+//const backendURL = "http://localhost:5000";
 
 const RecruiterProjects = () => {
    const navigate = useNavigate(); // 👈 hook for navigation
@@ -44,7 +47,7 @@ const RecruiterProjects = () => {
 
   const fetchJobs = useCallback(async () => {
     try {
-      const res = await fetch(`${backendURL}/api/jobs`, {
+      const res = await fetch(`${API_BASE_URL}/api/jobs`, {
         headers: { Authorization: `Bearer ${user?.token}` },
       });
       const data = await res.json();
@@ -70,7 +73,7 @@ const RecruiterProjects = () => {
   e.preventDefault();
 
   try {
-    const res = await fetch(`${backendURL}/api/jobs`, {
+    const res = await fetch(`${API_BASE_URL}/api/jobs`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -117,7 +120,7 @@ const RecruiterProjects = () => {
       setJobs(jobs.filter((job) => job._id !== jobId));
 
       // Backend call to delete the job (we'll implement API later)
-      await fetch(`${backendURL}/api/jobs/${jobId}`, {
+      await fetch(`${API_BASE_URL}/api/jobs/${jobId}`, {
         method: "DELETE",
         headers: {
           Authorization: `Bearer ${user?.token}`,

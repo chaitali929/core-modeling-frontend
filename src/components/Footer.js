@@ -4,6 +4,7 @@ import { FaFacebook, FaTwitter, FaInstagram, FaLinkedin } from "react-icons/fa";
 import "../styles/responsive.css";
 import { useNavigate } from "react-router-dom";
 
+
 const Footer = () => {
   const navigate = useNavigate();
   const user = JSON.parse(localStorage.getItem("user"));

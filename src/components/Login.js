@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import { API_BASE_URL } from "./config";
+
 import { useNavigate, Link } from "react-router-dom";
 import "../styles/style.css";
 import slide1 from "../images/slide1.jpg";
@@ -11,12 +13,15 @@ import Signup from "./Signup";
 import logo from "../images/logo.png";
 import "../styles/responsive.css"
 import Footer from "./Footer";   // ✅ Import Footer
+import { FaEye, FaEyeSlash } from "react-icons/fa"; // ✅ Eye icons
+
 
 const Login = () => {
   const [formData, setFormData] = useState({ email: "", password: "" });
   const [showLogin, setShowLogin] = useState(false);
   const [showSignup, setShowSignup] = useState(false);
   const [currentSlide, setCurrentSlide] = useState(0);
+  const [showPassword, setShowPassword] = useState(false); // ✅ toggle state
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
@@ -78,7 +83,7 @@ const stepsData = [
     setLoading(true);
 
     try {
-      const res = await axios.post("http://localhost:5000/api/auth/login", formData);
+      const res = await axios.post(`${API_BASE_URL}/api/auth/login`, formData);
 
       if (res && res.data) {
         localStorage.setItem("user", JSON.stringify(res.data));
@@ -294,14 +299,25 @@ return (
               onChange={handleChange}
               required
             />
-            <input
-              type="password"
-              name="password"
-              placeholder="Password"
-              value={formData.password}
-              onChange={handleChange}
-              required
-            />
+      
+              {/* ✅ Password with eye toggle */}
+              <div className="password-field">
+                <input
+                  type={showPassword ? "text" : "password"}
+                  name="password"
+                  placeholder="Password"
+                  value={formData.password}
+                  onChange={handleChange}
+                  required
+                />
+                <span
+                  className="eye-icon"
+                  onClick={() => setShowPassword(!showPassword)}
+                >
+                  {showPassword ? <FaEyeSlash /> : <FaEye />}
+                </span>
+              </div>
+              
             <button type="submit" disabled={loading}>
               {loading ? "Logging in..." : "Login"}
             </button>

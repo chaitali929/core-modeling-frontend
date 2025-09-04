@@ -2,8 +2,11 @@ import React, { useEffect, useRef, useState } from "react";
 import Navbar from "./Navbar";
 import Footer from "./Footer";
 import "../styles/PostedJobs.css";
+import axios from "axios";
+import { API_BASE_URL } from "./config";
 
-const backendURL = "http://localhost:5000";
+
+//const backendURL = "http://localhost:5000";
 
 const PostedJobs = () => {
   const [jobs, setJobs] = useState([]);
@@ -16,7 +19,7 @@ const PostedJobs = () => {
   useEffect(() => {
     const fetchJobs = async () => {
       try {
-        const res = await fetch(`${backendURL}/api/jobs`, {
+        const res = await fetch(`${API_BASE_URL}/api/jobs`, {
           headers: { Authorization: `Bearer ${user?.token}` },
         });
         const data = await res.json();
@@ -31,7 +34,7 @@ const PostedJobs = () => {
 
   const handleJobClick = async (jobId) => {
     try {
-      const res = await fetch(`${backendURL}/api/applications/job/${jobId}`, {
+      const res = await fetch(`${API_BASE_URL}/api/applications/job/${jobId}`, {
         headers: { Authorization: `Bearer ${user?.token}` },
       });
       const data = await res.json();

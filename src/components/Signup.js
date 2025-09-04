@@ -1,11 +1,15 @@
 import React, { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import { FaEye, FaEyeSlash } from "react-icons/fa"; // ✅ eye icons
 import "../styles/style.css";
+import { API_BASE_URL } from "./config";
+
 
 const Signup = () => {
   const [role, setRole] = useState("artist");
   const [identity, setIdentity] = useState("");
+  const [showPassword, setShowPassword] = useState(false); // ✅ state for toggling password visibility
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -61,7 +65,7 @@ const Signup = () => {
         data.append("files", file);
       });
 
-      await axios.post("http://localhost:5000/api/auth/signup", data, {
+      await axios.post(`${API_BASE_URL}/api/auth/signup`, data, {
         headers: { "Content-Type": "multipart/form-data" },
       });
 
@@ -149,7 +153,22 @@ const Signup = () => {
 
               <input type="text" name="name" placeholder="Name" onChange={handleChange} required />
               <input type="email" name="email" placeholder="Email" onChange={handleChange} required />
-              <input type="password" name="password" placeholder="Password" onChange={handleChange} required />
+              {/* ✅ Password with toggle */}
+              <div className="password-field">
+                <input
+                  type={showPassword ? "text" : "password"}
+                  name="password"
+                  placeholder="Password"
+                  onChange={handleChange}
+                  required
+                />
+                <span
+                  className="eye-icon"
+                  onClick={() => setShowPassword(!showPassword)}
+                >
+                  {showPassword ? <FaEyeSlash /> : <FaEye />}
+                </span>
+              </div>
 
               {role === "artist" && (
                 <>

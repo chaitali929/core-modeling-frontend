@@ -2,8 +2,14 @@ import React, { useEffect, useState } from "react";
 import Navbar from "./Navbar";
 import Footer from "./Footer";
 import "../styles/ArtistsPage.css";
+import axios from "axios";
+import { API_BASE_URL } from "./config";
 
-const backendURL = "http://localhost:5000";
+
+
+
+
+//const backendURL = "http://localhost:5000";
 
 const AdminArtistsPage = () => {
   const [artists, setArtists] = useState([]);
@@ -15,7 +21,7 @@ const AdminArtistsPage = () => {
   useEffect(() => {
     const fetchArtists = async () => {
       try {
-        const res = await fetch(`${backendURL}/api/artists`, {
+        const res = await fetch(`${API_BASE_URL}/api/artists`, {
           headers: { Authorization: `Bearer ${user?.token}` },
         });
         let data = await res.json();
@@ -30,7 +36,7 @@ const AdminArtistsPage = () => {
 
   const handleStatusUpdate = async (artistId, status) => {
     try {
-      const res = await fetch(`${backendURL}/api/artists/${artistId}/status`, {
+      const res = await fetch(`${API_BASE_URL}/api/artists/${artistId}/status`, {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",
@@ -61,7 +67,7 @@ const AdminArtistsPage = () => {
 
 const handleDeleteMedia = async (artistId, url, type) => {
   try {
-    const res = await fetch(`${backendURL}/api/artists/${artistId}/media`, {
+    const res = await fetch(`${API_BASE_URL}/api/artists/${artistId}/media`, {
       method: "DELETE",
       headers: {
         "Content-Type": "application/json",

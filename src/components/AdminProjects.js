@@ -2,8 +2,12 @@ import React, { useState, useEffect,useCallback } from "react";
 import Navbar from "./Navbar";
 import Footer from "./Footer";
 import "../styles/AdminProjects.css"; // you can reuse the same CSS
+import axios from "axios";
+import { API_BASE_URL } from "./config";
 
-const backendURL = "http://localhost:5000";
+
+
+//const backendURL = "http://localhost:5000";
 
 const AdminProjects = () => {
   const [jobs, setJobs] = useState([]);
@@ -11,7 +15,7 @@ const AdminProjects = () => {
 
   const fetchJobs = useCallback(async () => {
     try {
-      const res = await fetch(`${backendURL}/api/jobs`, {
+      const res = await fetch(`${API_BASE_URL}/api/jobs`, {
         headers: { Authorization: `Bearer ${user?.token}` },
       });
       const data = await res.json();
@@ -31,7 +35,7 @@ const AdminProjects = () => {
   // Handle approve/reject
   const updateStatus = async (jobId, status) => {
     try {
-      const res = await fetch(`${backendURL}/api/jobs/${jobId}/status`, {
+      const res = await fetch(`${API_BASE_URL}/api/jobs/${jobId}/status`, {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",

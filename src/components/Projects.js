@@ -1,13 +1,14 @@
 // src/pages/Projects.js
 import React, { useEffect, useState } from "react";
-
+import axios from "axios";
+import { API_BASE_URL } from "./config";
 import { useNavigate } from "react-router-dom";   // 👈 for navigation
 import Navbar from "./Navbar";
 import Footer from "./Footer";
 import "../styles/Projects.css";
 import "../styles/responsive.css"
 
-const backendURL = "http://localhost:5000";
+//const backendURL = "http://localhost:5000";
 
 const Projects = () => {
   const [jobs, setJobs] = useState([]);
@@ -34,7 +35,7 @@ const Projects = () => {
   // ✅ Fetch approved jobs
   const fetchApprovedJobs = async () => {
     try {
-      const res = await fetch(`${backendURL}/api/jobs/approved`, {
+      const res = await fetch(`${API_BASE_URL}/api/jobs/approved`, {
         headers: {
           "Content-Type": "application/json",
         },
@@ -50,7 +51,7 @@ const Projects = () => {
   const fetchAppliedJobs = async () => {
     if (!loggedInUser) return;
     try {
-      const res = await fetch(`${backendURL}/api/applications/user/${loggedInUser._id}`);
+      const res = await fetch(`${API_BASE_URL}/api/applications/user/${loggedInUser._id}`);
       const data = await res.json();
       setAppliedJobs(data.map((app) => app.job._id)); // store only jobIds
     } catch (err) {

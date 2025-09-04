@@ -3,8 +3,10 @@ import React, { useEffect, useState } from "react";
 import Navbar from "./Navbar";
 import Footer from "./Footer";
 import "../styles/AppliedJobs.css";
+import axios from "axios";
+import { API_BASE_URL } from "./config";
 
-const backendURL = "http://localhost:5000";
+//const backendURL = "http://localhost:5000";
 
 const AppliedJobs = () => {
   const [appliedJobs, setAppliedJobs] = useState([]);
@@ -15,7 +17,7 @@ const AppliedJobs = () => {
     if (!loggedInUser) return;
 
     try {
-      const res = await fetch(`${backendURL}/api/applications/user/${loggedInUser._id}`);
+      const res = await fetch(`${API_BASE_URL}/api/applications/user/${loggedInUser._id}`);
       const data = await res.json();
       setAppliedJobs(data); // data should include job details populated from backend
     } catch (err) {

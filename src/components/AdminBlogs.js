@@ -4,6 +4,7 @@ import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import "../styles/AdminBlogs.css";
 import "../styles/responsive.css";
+import { API_BASE_URL } from "../config";
 
 const AdminBlogs = () => {
   const [blogs, setBlogs] = useState([]);
@@ -15,7 +16,7 @@ const AdminBlogs = () => {
 
   const fetchBlogs = async () => {
     try {
-      const res = await axios.get("http://localhost:5000/api/blogs");
+      const res = await axios.get(`${API_BASE_URL}api/blogs`);
       setBlogs(res.data);
       if (res.data.length > 0) setSelectedBlog(res.data[0]);
     } catch (err) {
@@ -41,7 +42,7 @@ const AdminBlogs = () => {
     if (!token) return alert("You must be logged in as admin to post a blog");
 
     try {
-      const res = await axios.post("http://localhost:5000/api/blogs", formData, {
+      const res = await axios.post(`${API_BASE_URL}/api/blogs`, formData, {
         headers: {
           "Content-Type": "multipart/form-data",
           Authorization: `Bearer ${token}`,
@@ -69,7 +70,7 @@ const AdminBlogs = () => {
     if (!token) return alert("You must be logged in as admin to delete a blog");
 
     try {
-      await axios.delete(`http://localhost:5000/api/blogs/${blogId}`, {
+      await axios.delete(`${API_BASE_URL}/api/blogs/${blogId}`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },

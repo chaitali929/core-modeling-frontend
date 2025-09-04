@@ -4,6 +4,8 @@ import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import "../styles/Blogs.css"; // separate CSS file for this component
 import "../styles/responsive.css";
+import { API_BASE_URL } from "./config";
+
 
 const Blogs = () => {
   const [blogs, setBlogs] = useState([]);
@@ -11,7 +13,7 @@ const Blogs = () => {
 
   const fetchBlogs = async () => {
     try {
-      const res = await axios.get("http://localhost:5000/api/blogs");
+      const res = await axios.get(`${API_BASE_URL}/api/blogs`);
       setBlogs(res.data);
       if (res.data.length > 0) setSelectedBlog(res.data[0]);
     } catch (err) {

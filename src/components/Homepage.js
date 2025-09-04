@@ -3,7 +3,8 @@ import Navbar from "./Navbar";
 import Footer from "./Footer";
 import "../styles/style.css";
 import "../styles/homepage.css"
-
+import axios from "axios";
+import { API_BASE_URL } from "./config";
 import about1 from "../images/about1.jpg"
 import about2 from "../images/about2.jpg"
 import about3 from "../images/about3.jpg"

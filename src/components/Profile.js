@@ -4,8 +4,10 @@ import Navbar from "./Navbar";
 import Footer from "./Footer";
 import "../styles/Profile.css";
 import { useNavigate } from "react-router-dom"; // ✅ Import navigation hook
+import { API_BASE_URL } from "./config";
 
-const API_BASE = process.env.REACT_APP_API_BASE || "http://localhost:5000";
+
+//const API_BASE = process.env.REACT_APP_API_BASE || "http://localhost:5000";
 
 // Format date as dd-mm-yyyy
 const formatDate = (dateString) => {
@@ -62,7 +64,7 @@ const Profile = () => {
     setPwdLoading(true);
     try {
       const res = await axios.put(
-        `${API_BASE}/api/auth/change-password`,
+        `${API_BASE_URL}/api/auth/change-password`,
         { oldPassword, newPassword },
         { headers: { Authorization: `Bearer ${token}` } }
       );

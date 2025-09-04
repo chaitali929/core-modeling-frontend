@@ -3,6 +3,7 @@ import Navbar from "./Navbar";
 import Footer from "./Footer";
 import "../styles/BuyPremium.css";
 
+
 const BuyPremium = () => {
   return (
     <div className="buy-premium-page">

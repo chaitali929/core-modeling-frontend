@@ -2,6 +2,10 @@ import React, { useEffect, useState } from "react";
 import Navbar from "./Navbar";
 import Footer from "./Footer";
 import "../styles/Recruiters.css";
+import axios from "axios";
+import { API_BASE_URL } from "./config";
+
+
 
 const Recruiters = () => {
   const [recruiters, setRecruiters] = useState([]);
@@ -9,7 +13,7 @@ const Recruiters = () => {
   useEffect(() => {
     const fetchRecruiters = async () => {
       try {
-        const res = await fetch("http://localhost:5000/api/auth/recruiters");
+        const res = await fetch(`${API_BASE_URL}/api/auth/recruiters`);
         const data = await res.json();
         setRecruiters(data);
       } catch (err) {
@@ -30,7 +34,7 @@ const Recruiters = () => {
     }
 
     const res = await fetch(
-      `http://localhost:5000/api/auth/recruiters/${id}/premium`,
+      `${API_BASE_URL}/api/auth/recruiters/${id}/premium`,
       {
         method: "PUT",
         headers: {

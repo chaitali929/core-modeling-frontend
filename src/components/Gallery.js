@@ -3,8 +3,9 @@ import axios from "axios";
 import Navbar from "./Navbar";
 import Footer from "./Footer";
 import "../styles/Gallery.css";
+import { API_BASE_URL } from "./config";
 
-const backendURL = "http://localhost:5000";
+//const backendURL = "http://localhost:5000";
 
 const Gallery = () => {
   const [gallery, setGallery] = useState({ photos: [], videos: [], name: "" });
@@ -21,7 +22,7 @@ const Gallery = () => {
           return;
         }
 
-        const res = await axios.get(`${backendURL}/api/users/gallery`, {
+        const res = await axios.get(`${API_BASE_URL}/api/users/gallery`, {
           headers: { Authorization: `Bearer ${user.token}` },
         });
 
@@ -52,7 +53,7 @@ const Gallery = () => {
     formData.append("type", showUploadForm.type);
 
     try {
-      const res = await axios.post(`${backendURL}/api/users/upload`, formData, {
+      const res = await axios.post(`${API_BASE_URL}/api/users/upload`, formData, {
         headers: {
           Authorization: `Bearer ${user.token}`,
           "Content-Type": "multipart/form-data",
@@ -98,7 +99,7 @@ const Gallery = () => {
       }
 
       // ✅ Backend call
-      await axios.delete(`${backendURL}/api/users/delete`, {
+      await axios.delete(`${API_BASE_URL}/api/users/delete`, {
         headers: { Authorization: `Bearer ${user.token}` },
         data: { url, type },
       });
