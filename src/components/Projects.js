@@ -1,7 +1,7 @@
 // src/pages/Projects.js
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import { API_BASE_URL } from "./config";
+import { API_BASE_URL } from "../config";
 import { useNavigate } from "react-router-dom";   // 👈 for navigation
 import Navbar from "./Navbar";
 import Footer from "./Footer";

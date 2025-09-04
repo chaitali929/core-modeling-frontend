@@ -4,7 +4,7 @@ import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import "../styles/Blogs.css"; // separate CSS file for this component
 import "../styles/responsive.css";
-import { API_BASE_URL } from "./config";
+import { API_BASE_URL } from "../config";
 
 
 const Blogs = () => {

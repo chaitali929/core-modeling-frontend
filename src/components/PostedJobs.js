@@ -3,7 +3,7 @@ import Navbar from "./Navbar";
 import Footer from "./Footer";
 import "../styles/PostedJobs.css";
 import axios from "axios";
-import { API_BASE_URL } from "./config";
+import { API_BASE_URL } from "../config";
 
 
 //const backendURL = "http://localhost:5000";

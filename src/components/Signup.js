@@ -3,7 +3,7 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { FaEye, FaEyeSlash } from "react-icons/fa"; // ✅ eye icons
 import "../styles/style.css";
-import { API_BASE_URL } from "./config";
+import { API_BASE_URL } from "../config";
 
 
 const Signup = () => {

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import { API_BASE_URL } from "./config";
+import { API_BASE_URL } from "../config";
 
 import { useNavigate, Link } from "react-router-dom";
 import "../styles/style.css";
