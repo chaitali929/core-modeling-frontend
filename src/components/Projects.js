@@ -111,7 +111,7 @@ const Projects = () => {
     formPayload.append("jobId", selectedJob._id);      
     formPayload.append("userId", loggedInUser._id);    
 
-    fetch(`${backendURL}/api/applications/apply`, {
+    fetch(`${API_BASE_URL}/api/applications/apply`, {
       method: "POST",
       body: formPayload,
     })

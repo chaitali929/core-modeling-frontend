@@ -145,7 +145,7 @@ const Profile = () => {
       }
 
       // Request
-      const res = await axios.put(`${API_BASE}/api/auth/profile`, formData, {
+      const res = await axios.put(`${API_BASE_URL}/api/auth/profile`, formData, {
         headers: {
           Authorization: `Bearer ${token}`,
           "Content-Type": "multipart/form-data",
